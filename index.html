@@ -5,48 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encanto Creativo</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts para tipografías -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <!-- HEADER -->
     <header>
-      <h1>Encanto Creativo</h1>
+      <div class="logo">
+        <img src="imagenes/logo.png" alt="Encanto Creativo" />
+      </div>
       <nav>
         <a href="#inicio">Inicio</a>
         <a href="#productos">Productos</a>
+        <a href="#sobre-nosotros">Sobre nosotros</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </header>
 
-    <main>
-      <section id="inicio">
-        <h2>Bienvenidos a Encanto Creativo</h2>
-        <p>Diseños únicos en sellos, porta credenciales y más.</p>
-      </section>
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <h1>Bienvenidos a Encanto Creativo</h1>
+      <p>Diseños únicos en sellos, porta credenciales y más</p>
+      <a href="#productos" class="btn">Ver productos</a>
+    </section>
 
-      <section id="productos">
-        <h2>Nuestros Productos</h2>
-        <div class="producto">
+    <!-- PRODUCTOS -->
+    <section id="productos" class="productos">
+      <h2>Nuestros Productos</h2>
+      <div class="grid">
+        <a href="producto1.html" class="card">
+          <img src="imagenes/producto1.jpg" alt="Sello personalizado" />
           <h3>Sello personalizado</h3>
-          <p>Perfecto para tus manualidades.</p>
-        </div>
-        <div class="producto">
+          <p>$12.990 CLP</p>
+        </a>
+        <a href="producto2.html" class="card">
+          <img src="imagenes/producto2.jpg" alt="Porta credenciales" />
           <h3>Porta credenciales</h3>
-          <p>Diseños con tus personajes favoritos.</p>
-        </div>
-      </section>
+          <p>$9.990 CLP</p>
+        </a>
+        <a href="producto3.html" class="card">
+          <img src="imagenes/producto3.jpg" alt="Amigurumi" />
+          <h3>Amigurumi</h3>
+          <p>$14.500 CLP</p>
+        </a>
+      </div>
+    </section>
 
-      <section id="contacto">
-        <h2>Contáctanos</h2>
-        <form>
-          <input type="text" placeholder="Tu nombre" required />
-          <input type="email" placeholder="Tu correo" required />
-          <textarea placeholder="Tu mensaje" required></textarea>
-          <button type="submit">Enviar</button>
-        </form>
-      </section>
-    </main>
+    <!-- SOBRE NOSOTROS -->
+    <section id="sobre-nosotros" class="sobre-nosotros">
+      <h2>Sobre Nosotros</h2>
+      <div class="contenido">
+        <p>
+          En Encanto Creativo trabajamos con pasión para llevarte productos
+          únicos y personalizados. Cada pieza está hecha a mano, con materiales
+          de calidad y mucho amor, para que tus momentos especiales tengan un
+          toque mágico.
+        </p>
+        <img src="imagenes/sobre-nosotros.jpg" alt="Nuestro equipo creativo" />
+      </div>
+    </section>
 
+    <!-- CONTACTO -->
+    <section id="contacto" class="contacto">
+      <h2>Contáctanos</h2>
+      <form>
+        <input type="text" placeholder="Tu nombre" required />
+        <input type="email" placeholder="Tu correo electrónico" required />
+        <textarea placeholder="Tu mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-      <p>&copy; 2025 Encanto Creativo. Todos los derechos reservados.</p>
+      <p>
+        &copy; 2025 Encanto Creativo | Síguenos en <a href="#">Facebook</a> |
+        <a href="#">Instagram</a>
+      </p>
     </footer>
 
     <script src="script.js"></script>

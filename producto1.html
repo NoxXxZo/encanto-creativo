@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sello personalizado | Encanto Creativo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <a href="index.html">
+          <img src="imagenes/logo.png" alt="Encanto Creativo" />
+        </a>
+      </div>
+      <nav>
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#productos">Productos</a>
+        <a href="index.html#sobre-nosotros">Sobre nosotros</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <!-- VISTA DEL PRODUCTO -->
+    <main class="producto-detalle">
+      <img src="imagenes/producto1.jpg" alt="Sello personalizado" />
+      <h1>Sello personalizado</h1>
+      <p>
+        Perfectos para personalizar tus manualidades. Hechos con materiales de
+        alta calidad y diseños únicos.
+      </p>
+      <h2 id="precio">$0</h2>
+      <button class="btn">Agregar al carrito</button>
+    </main>
+
+    <script>
+      // Mostrar precio formateado en CLP
+      const precio = 12990;
+      document.getElementById("precio").textContent = precio.toLocaleString(
+        "es-CL",
+        {
+          style: "currency",
+          currency: "CLP",
+        }
+      );
+    </script>
+  </body>
+</html>
