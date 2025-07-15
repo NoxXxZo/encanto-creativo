@@ -272,3 +272,27 @@ form textarea:focus {
   color: var(--menta);
   margin: 20px 0;
 }
+
+/* CARRITO ESTILO AMAZON */
+#carrito-btn {
+  position: relative;
+  font-size: 1.2rem;
+  color: var(--gris-oscuro);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#contador-carrito {
+  background-color: var(--menta);
+  color: var(--gris-oscuro);
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  position: absolute;
+  top: -8px;
+  right: -10px;
+}
+
+#carrito-btn:hover {
+  color: var(--rosa);
+}

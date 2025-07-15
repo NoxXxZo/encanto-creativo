@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda | Encanto Creativo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="index.html">
+          <img src="imagenes/Logo.png" alt="Encanto Creativo" />
+        </a>
+      </div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="tienda.html" class="active">Tienda</a>
+        <a href="personaliza.html">Personaliza tu sello</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#contacto">Contacto</a>
+        <a href="#" id="carrito-btn">
+          🛒 <span id="contador-carrito">0</span>
+        </a>
+      </nav>
+    </header>
+
+    <main class="productos">
+      <h2>Tienda</h2>
+      <div>
+        <label for="filtro">Filtrar por categoría:</label>
+        <select id="filtro">
+          <option value="todos">Todos</option>
+          <option value="sellos">Sellos</option>
+          <option value="porta-credenciales">Porta credenciales</option>
+          <option value="amigurumis">Amigurumis</option>
+          <option value="lapiceros">Lapiceros</option>
+        </select>
+      </div>
+      <div id="lista-productos" class="grid"></div>
+      <button class="btn" onclick="enviarPedidoWhatsApp()">
+        Enviar pedido por WhatsApp
+      </button>
+    </main>
+
+    <footer>
+      <p>
+        &copy; 2025 Encanto Creativo | <a href="#">Facebook</a> |
+        <a href="#">Instagram</a>
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
