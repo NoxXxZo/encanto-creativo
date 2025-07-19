@@ -296,3 +296,121 @@ form textarea:focus {
 #carrito-btn:hover {
   color: var(--rosa);
 }
+
+/* MODAL ESTILO AMAZON      */
+#modal-carrito {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.8); /* fondo oscuro */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#modal-contenido {
+  background-color: var(--blanco);
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+#modal-contenido h3 {
+  margin-top: 0;
+  font-family: var(--fuente-titulo);
+}
+
+#modal-carrito ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+#modal-carrito li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#modal-carrito li span {
+  flex: 1;
+}
+
+#modal-carrito button {
+  background-color: var(--rosa);
+  border: none;
+  color: var(--gris-oscuro);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#modal-carrito button:hover {
+  background-color: var(--menta);
+}
+
+#cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ======================== */
+/* BOTÓN FLOTANTE WHATSAPP  */
+/* ======================== */
+#btn-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366; /* verde WhatsApp */
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btn-whatsapp:hover {
+  background-color: #128c7e;
+}
+
+/* BOTONES DE CANTIDAD EN EL MODAL */
+.cantidad-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cantidad-control button {
+  background-color: var(--menta);
+  border: none;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cantidad-control button:hover {
+  background-color: var(--rosa);
+}
+
+.cantidad-control span {
+  min-width: 20px;
+  text-align: center;
+}

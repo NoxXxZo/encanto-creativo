@@ -38,9 +38,9 @@
         </select>
       </div>
       <div id="lista-productos" class="grid"></div>
-      <button class="btn" onclick="enviarPedidoWhatsApp()">
+      <!--<button class="btn" onclick="enviarPedidoWhatsApp()">
         Enviar pedido por WhatsApp
-      </button>
+      </button>-->
     </main>
 
     <footer>
@@ -51,5 +51,20 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- MODAL CARRITO -->
+    <div id="modal-carrito">
+      <div id="modal-contenido">
+        <span id="cerrar-modal">&times;</span>
+        <h3>Tu carrito</h3>
+        <ul id="lista-carrito"></ul>
+        <p id="total-carrito"><strong>Total: </strong>$0</p>
+        <button onclick="enviarPedidoWhatsApp()" class="btn">
+          Enviar pedido por WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <button id="btn-whatsapp" onclick="enviarPedidoWhatsApp()">📱</button>
   </body>
 </html>

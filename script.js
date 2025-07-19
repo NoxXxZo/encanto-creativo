@@ -8,102 +8,194 @@ document.querySelectorAll('a[href^="#"]').forEach((enlace) => {
     });
   });
 });
+window.addEventListener("DOMContentLoaded", () => {
+  // ========================
+  // VARIABLES
+  // ========================
+  let carrito = [];
 
-// ========================
-// VARIABLES
-// ========================
-let carrito = [];
+  // ========================
+  // CARGAR PRODUCTOS DESDE JSON
+  // ========================
+  async function cargarProductos() {
+    const response = await fetch("productos.json");
+    const productos = await response.json();
+    mostrarProductos(productos);
 
-// ========================
-// CARGAR PRODUCTOS DESDE JSON
-// ========================
-async function cargarProductos() {
-  const response = await fetch("productos.json");
-  const productos = await response.json();
-  mostrarProductos(productos);
-
-  // Filtro por categoría
-  document.getElementById("filtro").addEventListener("change", (e) => {
-    const categoria = e.target.value;
-    const filtrados =
-      categoria === "todos"
-        ? productos
-        : productos.filter((p) => p.categoria === categoria);
-    mostrarProductos(filtrados);
-  });
-}
-
-// ========================
-// MOSTRAR PRODUCTOS EN TIENDA
-// ========================
-function mostrarProductos(productos) {
-  const lista = document.getElementById("lista-productos");
-  lista.innerHTML = "";
-
-  productos.forEach((p) => {
-    const stockText = p.stock > 0 ? "En stock" : "Agotado";
-    const disabled = p.stock === 0 ? "disabled" : "";
-
-    lista.innerHTML += `
-      <div class="card">
-        <img src="${p.imagen}" alt="${p.nombre}" />
-        <h3>${p.nombre}</h3>
-        <p>${p.precio.toLocaleString("es-CL", {
-          style: "currency",
-          currency: "CLP",
-        })}</p>
-        <p>${stockText}</p>
-        <button class="btn" ${disabled} onclick="agregarAlCarrito('${
-      p.nombre
-    }', ${p.precio})">
-          Agregar al carrito
-        </button>
-      </div>
-    `;
-  });
-}
-
-// ========================
-// AGREGAR PRODUCTO AL CARRITO
-// ========================
-function agregarAlCarrito(nombre, precio) {
-  carrito.push({ nombre, precio });
-  actualizarContadorCarrito();
-  alert(`${nombre} agregado al carrito`);
-}
-
-// ========================
-// ACTUALIZAR CONTADOR CARRITO
-// ========================
-function actualizarContadorCarrito() {
-  document.getElementById("contador-carrito").textContent = carrito.length;
-}
-
-// ========================
-// ENVIAR PEDIDO POR WHATSAPP
-// ========================
-function enviarPedidoWhatsApp() {
-  if (carrito.length === 0) {
-    alert("Tu carrito está vacío");
-    return;
+    // Filtro por categoría
+    const filtro = document.getElementById("filtro");
+    if (filtro) {
+      filtro.addEventListener("change", (e) => {
+        const categoria = e.target.value;
+        const filtrados =
+          categoria === "todos"
+            ? productos
+            : productos.filter((p) => p.categoria === categoria);
+        mostrarProductos(filtrados);
+      });
+    }
   }
 
-  const numero = "56966411859"; // Reemplaza con tu número
-  let mensaje = "¡Hola! Quiero hacer el siguiente pedido:%0A";
+  // ========================
+  // MOSTRAR PRODUCTOS EN TIENDA
+  // ========================
+  function mostrarProductos(productos) {
+    const lista = document.getElementById("lista-productos");
+    if (!lista) return; // No hacer nada si no existe
+    lista.innerHTML = "";
 
-  carrito.forEach((p, index) => {
-    mensaje += `${index + 1}. ${p.nombre} - ${p.precio.toLocaleString("es-CL", {
+    productos.forEach((p) => {
+      const stockText = p.stock > 0 ? "En stock" : "Agotado";
+      const disabled = p.stock === 0 ? "disabled" : "";
+
+      lista.innerHTML += `
+        <div class="card">
+          <img src="${p.imagen}" alt="${p.nombre}" />
+          <h3>${p.nombre}</h3>
+          <p>${p.precio.toLocaleString("es-CL", {
+            style: "currency",
+            currency: "CLP",
+          })}</p>
+          <p>${stockText}</p>
+          <button class="btn" ${disabled} onclick="agregarAlCarrito('${
+        p.nombre
+      }', ${p.precio})">
+            Agregar al carrito
+          </button>
+        </div>
+      `;
+    });
+  }
+
+  // ========================
+  // AGREGAR PRODUCTO AL CARRITO (CON CANTIDADES)
+  // ========================
+  window.agregarAlCarrito = function (nombre, precio) {
+    const productoExistente = carrito.find((p) => p.nombre === nombre);
+    if (productoExistente) {
+      productoExistente.cantidad++;
+    } else {
+      carrito.push({ nombre, precio, cantidad: 1 });
+    }
+    actualizarContadorCarrito();
+    alert(`${nombre} agregado al carrito`);
+  };
+
+  // ========================
+  // ACTUALIZAR CONTADOR CARRITO
+  // ========================
+  function actualizarContadorCarrito() {
+    const contador = document.getElementById("contador-carrito");
+    if (contador) contador.textContent = carrito.length;
+  }
+
+  // ========================
+  // MODAL: ABRIR Y CERRAR
+  // ========================
+  const modal = document.getElementById("modal-carrito");
+  const cerrarModal = document.getElementById("cerrar-modal");
+  const carritoBtn = document.getElementById("carrito-btn");
+
+  if (carritoBtn && modal && cerrarModal) {
+    carritoBtn.addEventListener("click", () => {
+      actualizarModalCarrito();
+      modal.style.display = "flex";
+    });
+
+    cerrarModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
+
+  // ========================
+  // ACTUALIZAR MODAL CARRITO
+  // ========================
+  function actualizarModalCarrito() {
+    const lista = document.getElementById("lista-carrito");
+    const total = document.getElementById("total-carrito");
+    if (!lista || !total) return;
+
+    lista.innerHTML = "";
+    let suma = 0;
+
+    carrito.forEach((p, index) => {
+      suma += p.precio * p.cantidad;
+      lista.innerHTML += `
+        <li>
+          <span>${p.nombre} - ${p.precio.toLocaleString("es-CL", {
+        style: "currency",
+        currency: "CLP",
+      })}</span>
+          <div class="cantidad-control">
+            <button onclick="cambiarCantidad(${index}, -1)">–</button>
+            <span>${p.cantidad}</span>
+            <button onclick="cambiarCantidad(${index}, 1)">+</button>
+          </div>
+        </li>
+      `;
+    });
+
+    total.innerHTML = `<strong>Total: </strong>${suma.toLocaleString("es-CL", {
       style: "currency",
       currency: "CLP",
-    })}%0A`;
-  });
+    })}`;
+  }
 
-  window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
-}
+  // ========================
+  // CAMBIAR CANTIDAD (+ / –)
+  // ========================
+  window.cambiarCantidad = function (indice, cambio) {
+    carrito[indice].cantidad += cambio;
+    if (carrito[indice].cantidad <= 0) {
+      carrito.splice(indice, 1); // Eliminar si cantidad es 0
+    }
+    actualizarContadorCarrito();
+    actualizarModalCarrito();
+  };
 
-// ========================
-// INICIALIZAR
-// ========================
-if (document.getElementById("lista-productos")) {
-  cargarProductos();
-}
+  // ========================
+  // ELIMINAR PRODUCTO DEL CARRITO
+  // ========================
+  window.eliminarDelCarrito = function (indice) {
+    carrito.splice(indice, 1);
+    actualizarContadorCarrito();
+    actualizarModalCarrito();
+  };
+
+  // ========================
+  // ENVIAR PEDIDO POR WHATSAPP
+  // ========================
+  window.enviarPedidoWhatsApp = function () {
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío");
+      return;
+    }
+
+    const numero = "56912345678"; // Cambia por tu número real
+    let mensaje = "¡Hola! Quiero hacer el siguiente pedido:%0A";
+
+    carrito.forEach((p, index) => {
+      mensaje += `${index + 1}. ${p.nombre} x${p.cantidad} - ${(
+        p.precio * p.cantidad
+      ).toLocaleString("es-CL", {
+        style: "currency",
+        currency: "CLP",
+      })}%0A`;
+    });
+
+    window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
+  };
+
+  // ========================
+  // INICIALIZAR
+  // ========================
+  if (document.getElementById("lista-productos")) {
+    cargarProductos();
+  }
+});
