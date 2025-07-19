@@ -177,7 +177,7 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const numero = "56912345678"; // Cambia por tu número real
+    const numero = "56966411859";
     let mensaje = "¡Hola! Quiero hacer el siguiente pedido:%0A";
 
     carrito.forEach((p, index) => {
