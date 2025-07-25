@@ -58,9 +58,30 @@
         <h3>Tu carrito</h3>
         <ul id="lista-carrito"></ul>
         <p id="total-carrito"><strong>Total: </strong>$0</p>
-        <button onclick="enviarPedidoWhatsApp()" class="btn">
-          Enviar pedido por WhatsApp
-        </button>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+          "
+        >
+          <button
+            onclick="vaciarCarrito()"
+            class="btn"
+            style="background-color: #ff7878; color: #333"
+          >
+            Vaciar carrito
+          </button>
+          <button
+            onclick="enviarPedidoWhatsApp()"
+            class="btn"
+            style="background-color: #25d366; color: #333"
+          >
+            Enviar pedido por WhatsApp
+          </button>
+        </div>
       </div>
     </div>
 
