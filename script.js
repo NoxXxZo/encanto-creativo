@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // VARIABLES
   // ========================
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  let catalogo = [];
 
   // ========================
   // CARGAR PRODUCTOS DESDE JSON
@@ -20,6 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
   async function cargarProductos() {
     const response = await fetch("productos.json");
     const productos = await response.json();
+    catalogo = productos; // Guardar el catálogo completo
     mostrarProductos(productos);
 
     // Filtro por categoría
@@ -71,12 +73,22 @@ window.addEventListener("DOMContentLoaded", () => {
   // AGREGAR PRODUCTO AL CARRITO (CON CANTIDADES)
   // ========================
   window.agregarAlCarrito = function (nombre, precio) {
+    const productoEnCatalogo = catalogo.find((p) => p.nombre === nombre);
+    const stockDisponible = productoEnCatalogo ? productoEnCatalogo.stock : 1;
+
     const productoExistente = carrito.find((p) => p.nombre === nombre);
     if (productoExistente) {
+      if (productoExistente.cantidad >= stockDisponible) {
+        alert(
+          `No puedes agregar más unidades de "${nombre}". Stock máximo alcanzado.`
+        );
+        return;
+      }
       productoExistente.cantidad++;
     } else {
-      carrito.push({ nombre, precio, cantidad: 1 });
+      carrito.push({ nombre, precio, cantidad: 1, stock: stockDisponible });
     }
+
     actualizarContadorCarrito();
     guardarCarrito();
     alert(`${nombre} agregado al carrito`);
@@ -142,8 +154,10 @@ window.addEventListener("DOMContentLoaded", () => {
       })}</span>
           <div class="cantidad-control">
             <button onclick="cambiarCantidad(${index}, -1)">–</button>
-            <span>${p.cantidad}</span>
-            <button onclick="cambiarCantidad(${index}, 1)">+</button>
+<span>${p.cantidad}</span>
+<button onclick="cambiarCantidad(${index}, 1)" ${
+        p.cantidad >= p.stock ? "disabled" : ""
+      }>+</button>
           </div>
         </li>
       `;
@@ -159,10 +173,20 @@ window.addEventListener("DOMContentLoaded", () => {
   // CAMBIAR CANTIDAD (+ / –)
   // ========================
   window.cambiarCantidad = function (indice, cambio) {
-    carrito[indice].cantidad += cambio;
-    if (carrito[indice].cantidad <= 0) {
-      carrito.splice(indice, 1); // Eliminar si cantidad es 0
+    const producto = carrito[indice];
+    const nuevoValor = producto.cantidad + cambio;
+
+    if (nuevoValor > producto.stock) {
+      alert("No hay más stock disponible para este producto.");
+      return;
     }
+
+    if (nuevoValor <= 0) {
+      carrito.splice(indice, 1);
+    } else {
+      producto.cantidad = nuevoValor;
+    }
+
     actualizarContadorCarrito();
     actualizarModalCarrito();
     guardarCarrito();
