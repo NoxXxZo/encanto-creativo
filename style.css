@@ -9,6 +9,9 @@
   --fuente-titulo: "Pacifico", cursive;
   --fuente-texto: "Montserrat", sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -51,6 +54,7 @@ header nav a:hover {
   color: var(--blanco);
   text-align: center;
   padding: 150px 20px;
+  margin-bottom: 20px;
 }
 
 .hero img {
@@ -66,14 +70,17 @@ header nav a:hover {
 
 .hero p {
   font-size: 1.2rem;
+  margin-bottom: 20px;
 }
 
 .btn {
+  display: inline-block;
   background-color: var(--menta);
   color: var(--blanco);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
+  margin-top: 25px;
 }
 
 .btn:hover {
@@ -90,9 +97,11 @@ header nav a:hover {
 
 .productos .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   margin-top: 20px;
+  margin: 20px auto 0;
+  max-width: 1100px;
 }
 
 .card {
@@ -176,48 +185,27 @@ form button:hover {
 
 /* FOOTER */
 footer {
-  background-color: var(--gris-oscuro);
+  background-color: var(--menta);
   color: var(--blanco);
   padding: 15px;
   text-align: center;
 }
+footer a {
+  color: var(--blanco); /* o el color que prefieras */
+  text-decoration: none; /* quita el subrayado */
+  font-weight: bold;
+}
+
+footer a:hover {
+  color: var(--marron); /* color al pasar el mouse */
+}
+
+/* 🔥 Aplica a toda la página */
+a:visited {
+  color: inherit; /* mantiene el mismo color que el normal */
+}
 
 /* Responsive: celulares y tablets */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  header nav {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  header nav a {
-    margin: 5px 0;
-  }
-
-  .sobre-nosotros .contenido {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .sobre-nosotros img {
-    width: 100%;
-    max-width: 250px;
-  }
-
-  .hero {
-    padding: 100px 15px;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-}
 
 /* Fade in para secciones */
 section {
@@ -288,20 +276,21 @@ form textarea:focus {
 #carrito-btn {
   position: relative;
   font-size: 1.2rem;
-  color: var(--gris-oscuro);
+  color: var(--marron);
   text-decoration: none;
   font-weight: bold;
+  display: inline-block;
 }
 
 #contador-carrito {
   background-color: var(--menta);
-  color: var(--gris-oscuro);
+  color: var(--blanco);
   border-radius: 50%;
   padding: 2px 8px;
   font-size: 0.8rem;
   position: absolute;
   top: -8px;
-  right: -10px;
+  right: 0px;
 }
 
 #carrito-btn:hover {
@@ -355,9 +344,9 @@ form textarea:focus {
 }
 
 #modal-carrito button {
-  background-color: var(--rosa);
+  background-color: var(--marron);
   border: none;
-  color: var(--gris-oscuro);
+  color: var(--blanco);
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -424,4 +413,189 @@ form textarea:focus {
 .cantidad-control span {
   min-width: 20px;
   text-align: center;
+}
+/* MINI CARRUSEL EN PRODUCTOS */
+.card .carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* igual que 1536x2048 */
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  background: #fff; /* fondo blanco detrás */
+}
+
+.card .carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* muestra la foto completa */
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  background: #fff; /* evita parpadeo */
+}
+
+.card .carousel img.active {
+  opacity: 1;
+}
+/* BOTÓN HAMBURGUESA */
+.hamburguesa {
+  display: none; /* oculto en escritorio */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001; /* encima del menú */
+}
+
+.hamburguesa span {
+  display: block;
+  height: 4px;
+  background: var(--gris-oscuro);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Animación a X */
+.hamburguesa.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburguesa.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburguesa.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* MENÚ MÓVIL */
+nav {
+  transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    /*font-family: var(--fuente-titulo);*/
+    font-family: "Segoe Script", cursive;
+    font-size: 4rem;
+    margin: 0 0 10px;
+  }
+  .hamburguesa {
+    display: flex; /* visible en móvil */
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 20px;
+    transform: translateX(100%); /* oculto por defecto */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  nav a {
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: left;
+    width: 100%;
+  }
+
+  nav.active {
+    transform: translateX(0); /* se despliega */
+  }
+}
+/* Overlay detrás del menú */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+#overlay.active {
+  display: block;
+}
+.nuestros-productos {
+  padding: 50px 0;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.nuestros-productos h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: var(--lila-oscuro);
+}
+
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.categoria {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--blanco);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.categoria:hover {
+  transform: translateY(-5px);
+}
+
+.slider {
+  width: 100%;
+  height: 450px; /* 🔥 mantén un alto fijo para que todas las categorías se vean uniformes */
+  position: relative;
+  overflow: hidden;
+  background: #fff; /* fondo detrás de las imágenes */
+}
+
+.slider img {
+  position: absolute;
+  top: 50%; /* centramos la imagen */
+  left: 50%;
+  transform: translate(-50%, -50%); /* la llevamos al centro */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* asegura que no se recorte */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slider img.active {
+  opacity: 1;
+}
+
+.categoria h3 {
+  margin: 15px 0;
+  font-size: 1.5rem;
+  color: var(--menta);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .categorias {
+    grid-template-columns: 1fr;
+  }
 }

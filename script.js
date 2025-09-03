@@ -22,9 +22,21 @@ window.addEventListener("DOMContentLoaded", () => {
     const response = await fetch("productos.json");
     const productos = await response.json();
     catalogo = productos; // Guardar el catálogo completo
-    mostrarProductos(productos);
 
-    // Filtro por categoría
+    const params = new URLSearchParams(window.location.search);
+    const categoriaURL = params.get("categoria");
+
+    if (categoriaURL) {
+      const filtrados = productos.filter((p) => p.categoria === categoriaURL);
+      mostrarProductos(filtrados);
+      // si tienes un <select id="filtro">, ponlo actualizado
+      const filtro = document.getElementById("filtro");
+      if (filtro) filtro.value = categoriaURL;
+    } else {
+      mostrarProductos(productos);
+    }
+
+    // Listener del filtro manual
     const filtro = document.getElementById("filtro");
     if (filtro) {
       filtro.addEventListener("change", (e) => {
@@ -43,29 +55,96 @@ window.addEventListener("DOMContentLoaded", () => {
   // ========================
   function mostrarProductos(productos) {
     const lista = document.getElementById("lista-productos");
-    if (!lista) return; // No hacer nada si no existe
+    if (!lista) return;
     lista.innerHTML = "";
 
-    productos.forEach((p) => {
+    productos.forEach((p, index) => {
       const stockText = p.stock > 0 ? "En stock" : "Agotado";
       const disabled = p.stock === 0 ? "disabled" : "";
 
+      // Generar todas las imágenes
+      let imagenesHTML = "";
+      if (p.imagenes && p.imagenes.length > 0) {
+        p.imagenes.forEach((img, i) => {
+          imagenesHTML += `<img src="${img}" alt="${p.nombre}" class="${
+            i === 0 ? "active" : ""
+          }">`;
+        });
+      } else {
+        imagenesHTML = `<img src="imagenes/no-image.png" alt="Sin imagen">`;
+      }
+
       lista.innerHTML += `
-        <div class="card">
-          <img src="${p.imagen}" alt="${p.nombre}" />
-          <h3>${p.nombre}</h3>
-          <p>${p.precio.toLocaleString("es-CL", {
-            style: "currency",
-            currency: "CLP",
-          })}</p>
-          <p>${stockText}</p>
-          <button class="btn" ${disabled} onclick="agregarAlCarrito('${
+      <div class="card">
+        <div class="carousel" data-index="${index}">
+          ${imagenesHTML}
+        </div>
+        <h3>${p.nombre}</h3>
+        <p>${p.precio.toLocaleString("es-CL", {
+          style: "currency",
+          currency: "CLP",
+        })}</p>
+        <p>${stockText}</p>
+        <button class="btn" ${disabled} onclick="agregarAlCarrito('${
         p.nombre
       }', ${p.precio})">
-            Agregar al carrito
-          </button>
-        </div>
-      `;
+          Agregar al carrito
+        </button>
+      </div>
+    `;
+    });
+
+    iniciarCarruseles();
+  }
+  // ========================
+  // CARRUSEL DE IMÁGENES index
+  async function initSliders() {
+    const response = await fetch("productos.json");
+    const productos = await response.json();
+
+    document.querySelectorAll(".slider").forEach((slider) => {
+      const categoria = slider.dataset.categoria;
+      const filtrados = productos.filter((p) => p.categoria === categoria);
+
+      // crear imágenes
+      filtrados.forEach((p, i) => {
+        if (p.imagenes && p.imagenes.length > 0) {
+          const img = document.createElement("img");
+          img.src = p.imagenes[0]; // primera imagen
+          if (i === 0) img.classList.add("active");
+          slider.appendChild(img);
+        }
+      });
+
+      // rotar imágenes
+      const imagenes = slider.querySelectorAll("img");
+      let indice = 0;
+      setInterval(() => {
+        imagenes[indice].classList.remove("active");
+        indice = (indice + 1) % imagenes.length;
+        imagenes[indice].classList.add("active");
+      }, 3000);
+    });
+  }
+
+  initSliders();
+
+  // ========================
+
+  // ========================
+
+  function iniciarCarruseles() {
+    const carouseles = document.querySelectorAll(".carousel");
+
+    carouseles.forEach((carousel) => {
+      const imagenes = carousel.querySelectorAll("img");
+      let indice = 0;
+
+      setInterval(() => {
+        imagenes[indice].classList.remove("active");
+        indice = (indice + 1) % imagenes.length;
+        imagenes[indice].classList.add("active");
+      }, 2000); // Cambia cada 2 segundos (puedes ajustar a 3000 para 3s)
     });
   }
 
@@ -247,4 +326,25 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   actualizarContadorCarrito();
+
+  // ========================
+  // MENÚ HAMBURGUESA
+  // ========================
+  const hamburguesa = document.getElementById("hamburguesa");
+  const menu = document.getElementById("menu");
+
+  if (hamburguesa && menu) {
+    hamburguesa.addEventListener("click", () => {
+      hamburguesa.classList.toggle("active");
+      menu.classList.toggle("active");
+    });
+
+    // Cerrar el menú al hacer clic en un enlace
+    menu.querySelectorAll("a").forEach((enlace) => {
+      enlace.addEventListener("click", () => {
+        hamburguesa.classList.remove("active");
+        menu.classList.remove("active");
+      });
+    });
+  }
 });

@@ -33,14 +33,23 @@
     <!-- HEADER -->
     <header>
       <div class="logo">
-        <img src="imagenes/logo.svg" alt="Encanto Creativo" />
+        <a href="index.html">
+          <img src="imagenes/logo.svg" alt="Encanto Creativo" />
+        </a>
       </div>
-      <nav>
-        <a href="index.html#inicio">Inicio</a>
-        <a href="tienda.html">Tienda</a>
-        <a href="personaliza.html">Personaliza tu sello</a>
-        <a href="index.html#sobre-nosotros">Sobre nosotros</a>
-        <a href="faq.html">Preguntas frecuentes</a>
+
+      <!-- Botón hamburguesa -->
+      <button id="hamburguesa" class="hamburguesa">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="menu">
+        <a href="index.html">Inicio</a>
+        <a href="tienda.html" class="active">Tienda</a>
+
+        <a href="faq.html">FAQ</a>
         <a href="index.html#contacto">Contacto</a>
       </nav>
     </header>
@@ -49,28 +58,30 @@
     <section id="inicio" class="hero">
       <h1>Bienvenidos a</h1>
       <img src="imagenes/logo-blanco.png" alt="Encanto Creativo" />
-      <p>Diseños únicos en sellos, porta credenciales y más</p>
+      <p>Diseños únicos en amigurumis, sellos, porta credenciales y más</p>
       <a href="#productos" class="btn">Ver productos</a>
     </section>
 
     <!-- PRODUCTOS -->
-    <section id="productos" class="productos">
-      <h2>Nuestros Productos</h2>
-      <div class="grid">
-        <a href="producto1.html" class="card">
-          <img src="imagenes/producto1.jpg" alt="Sello personalizado" />
-          <h3>Sello personalizado</h3>
-          <p>$12.990 CLP</p>
+    <section id="nuestros-productos" class="nuestros-productos">
+      <h2>Nuestros productos</h2>
+      <div class="categorias">
+        <!-- Amigurumis -->
+        <a href="tienda.html?categoria=amigurumis" class="categoria">
+          <div class="slider" data-categoria="amigurumis"></div>
+          <h3>Amigurumis</h3>
         </a>
-        <a href="producto2.html" class="card">
-          <img src="imagenes/producto2.jpg" alt="Porta credenciales" />
+
+        <!-- Sellos -->
+        <a href="tienda.html?categoria=sellos" class="categoria">
+          <div class="slider" data-categoria="sellos"></div>
+          <h3>Sellos</h3>
+        </a>
+
+        <!-- Porta credenciales -->
+        <a href="tienda.html?categoria=porta-credenciales" class="categoria">
+          <div class="slider" data-categoria="porta-credenciales"></div>
           <h3>Porta credenciales</h3>
-          <p>$9.990 CLP</p>
-        </a>
-        <a href="producto3.html" class="card">
-          <img src="imagenes/coneja1.webp" alt="Amigurumi" />
-          <h3>Amigurumi</h3>
-          <p>$14.500 CLP</p>
         </a>
       </div>
     </section>
@@ -104,8 +115,13 @@
     <footer>
       <p>
         &copy; 2025 Encanto Creativo |
-        <a href="#">Facebook</a> | <a href="#">Instagram</a> |
-        <a href="politicas.html">Políticas</a>
+        <a href="https://www.facebook.com/TU_PAGINA" target="_blank"
+          >Facebook</a
+        >
+        |
+        <a href="https://www.instagram.com/TU_PAGINA" target="_blank"
+          >Instagram</a
+        >
       </p>
     </footer>
 

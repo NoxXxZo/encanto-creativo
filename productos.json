@@ -3,7 +3,11 @@
     "id": 1,
     "nombre": "Sello personalizado - Toy Story",
     "precio": 12990,
-    "imagen": "imagenes/producto1.jpg",
+    "imagenes": [
+      "./imagenes/producto1.jpg",
+      "imagenes/producto1b.jpg",
+      "imagenes/producto1c.jpg"
+    ],
     "categoria": "sellos",
     "stock": 0
   },
@@ -11,7 +15,11 @@
     "id": 2,
     "nombre": "Porta credenciales - Toy Story",
     "precio": 9990,
-    "imagen": "imagenes/producto2.jpg",
+    "imagenes": [
+      "./imagenes/producto2.jpg",
+      "imagenes/producto2.jpg",
+      "imagenes/producto2.jpg"
+    ],
     "categoria": "porta-credenciales",
     "stock": 2
   },
@@ -19,15 +27,23 @@
     "id": 3,
     "nombre": "Amigurumi - Osito",
     "precio": 14990,
-    "imagen": "imagenes/osito1.webp",
+    "imagenes": [
+      "./imagenes/osito1.webp",
+      "./imagenes//osito2.webp",
+      "./imagenes//osito3.webp"
+    ],
     "categoria": "amigurumis",
-    "stock": 7
+    "stock": 2
   },
   {
     "id": 4,
     "nombre": "Amigurumi - Conejita",
     "precio": 19990,
-    "imagen": "./imagenes/coneja1.webp",
+    "imagenes": [
+      "./imagenes/coneja1.webp",
+      "./imagenes/coneja2.webp",
+      "./imagenes/coneja3.webp"
+    ],
     "categoria": "amigurumis",
     "stock": 2
   }
