@@ -17,138 +17,18 @@
   },
   {
     "id": 3,
-    "nombre": "Amigurumi - Patito",
-    "precio": 14500,
-    "imagen": "imagenes/producto3.jpg",
+    "nombre": "Amigurumi - Osito",
+    "precio": 14990,
+    "imagen": "imagenes/osito1.webp",
     "categoria": "amigurumis",
     "stock": 7
   },
   {
     "id": 4,
-    "nombre": "Amigurumi -  Conejita",
-    "precio": 8900,
-    "imagen": "imagenes/producto4.jpg",
+    "nombre": "Amigurumi - Conejita",
+    "precio": 19990,
+    "imagen": "./imagenes/coneja1.webp",
     "categoria": "amigurumis",
-    "stock": 10
-  },
-  {
-    "id": 5,
-    "nombre": "Lapicero - Toy Story",
-    "precio": 7500,
-    "imagen": "imagenes/producto5.jpg",
-    "categoria": "lapiceros",
-    "stock": 3
-  },
-  {
-    "id": 6,
-    "nombre": "Amigurumi - Muercielago",
-    "precio": 4500,
-    "imagen": "imagenes/producto6.jpg",
-    "categoria": "amigurumis",
-    "stock": 0
-  },
-  {
-    "id": 7,
-    "nombre": "Amigurumi - Gato",
-    "precio": 12000,
-    "imagen": "imagenes/producto7.jpg",
-    "categoria": "amigurumis",
-    "stock": 5
-  },
-  {
-    "id": 8,
-    "nombre": "Amigurumi - Perro",
-    "precio": 12000,
-    "imagen": "imagenes/producto8.jpg",
-    "categoria": "amigurumis",
-    "stock": 4
-  },
-  {
-    "id": 9,
-    "nombre": "Amigurumi - Unicornio",
-    "precio": 15000,
-    "imagen": "imagenes/producto9.jpg",
-    "categoria": "amigurumis",
-    "stock": 6
-  },
-  {
-    "id": 10,
-    "nombre": "Sello - Oso",
-    "precio": 15000,
-    "imagen": "imagenes/producto10.jpg",
-    "categoria": "sellos",
-    "stock": 8
-  },
-  {
-    "id": 11,
-    "nombre": "Sello - Conejito",
-    "precio": 15000,
-    "imagen": "imagenes/producto11.jpg",
-    "categoria": "sellos",
-    "stock": 9
-  },
-  {
-    "id": 12,
-    "nombre": "Sello - Gato",
-    "precio": 15000,
-    "imagen": "imagenes/producto12.jpg",
-    "categoria": "sellos",
-    "stock": 1
-  },
-  {
-    "id": 13,
-    "nombre": "Sello - Perro",
-    "precio": 15000,
-    "imagen": "imagenes/producto13.jpg",
-    "categoria": "sellos",
     "stock": 2
-  },
-  {
-    "id": 14,
-    "nombre": "Lapicero - Stitch",
-    "precio": 15000,
-    "imagen": "imagenes/producto14.jpg",
-    "categoria": "lapiceros",
-    "stock": 3
-  },
-  {
-    "id": 15,
-    "nombre": "Lapicero - Kawaii",
-    "precio": 9990,
-    "imagen": "imagenes/producto15.jpg",
-    "categoria": "lapiceros",
-    "stock": 4
-  },
-  {
-    "id": 16,
-    "nombre": "Lapicero - Mickey",
-    "precio": 9990,
-    "imagen": "imagenes/producto16.jpg",
-    "categoria": "lapiceros",
-    "stock": 5
-  },
-  {
-    "id": 17,
-    "nombre": "Lapicero - Minnie",
-    "precio": 9990,
-    "imagen": "imagenes/producto17.jpg",
-    "categoria": "lapiceros",
-    "stock": 6
-  },
-  {
-    "id": 18,
-    "nombre": "Porta credenciales - Mickey",
-    "precio": 9990,
-    "imagen": "imagenes/producto18.jpg",
-    "categoria": "porta-credenciales",
-    "stock": 7
-  },
-  {
-    "id": 19,
-    "nombre": "Porta credenciales - Minnie",
-    "precio": 9990,
-    "imagen": "imagenes/producto19.jpg",
-    "categoria": "porta-credenciales",
-    "stock": 8
   }
 ]

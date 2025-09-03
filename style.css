@@ -1,9 +1,11 @@
 /* Tipografías y colores */
 :root {
-  --rosa: #fadadd;
-  --menta: #c0e8d5;
+  --rosa: #ffffff;
+  --menta: #3d3753;
   --blanco: #ffffff;
-  --gris-oscuro: #333333;
+  --gris-oscuro: #000000;
+  --marron: #ad4554;
+  --lila-oscuro: #3d3753;
   --fuente-titulo: "Pacifico", cursive;
   --fuente-texto: "Montserrat", sans-serif;
 }
@@ -28,7 +30,7 @@ header {
 }
 
 header .logo img {
-  height: 50px;
+  height: 70px;
 }
 
 header nav a {
@@ -44,15 +46,21 @@ header nav a:hover {
 
 /* HERO */
 .hero {
-  background: url("imagenes/hero.png") center/cover no-repeat;
+  /*background: url("imagenes/sobre-nosotros.jpg") center/cover no-repeat;*/
+  background-color: #ad4554;
   color: var(--blanco);
   text-align: center;
   padding: 150px 20px;
 }
 
+.hero img {
+  height: 300px;
+  margin-bottom: 5px;
+}
 .hero h1 {
-  font-family: var(--fuente-titulo);
-  font-size: 3rem;
+  /*font-family: var(--fuente-titulo);*/
+  font-family: "Segoe Script", cursive;
+  font-size: 5rem;
   margin: 0 0 10px;
 }
 
@@ -62,7 +70,7 @@ header nav a:hover {
 
 .btn {
   background-color: var(--menta);
-  color: var(--gris-oscuro);
+  color: var(--blanco);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -70,12 +78,14 @@ header nav a:hover {
 
 .btn:hover {
   background-color: var(--rosa);
+  color: var(--lila-oscuro);
 }
 
 /* PRODUCTOS */
 .productos {
   padding: 50px 20px;
   text-align: center;
+  color: var(--lila-oscuro);
 }
 
 .productos .grid {
@@ -110,6 +120,7 @@ header nav a:hover {
 /* SOBRE NOSOTROS */
 .sobre-nosotros {
   background-color: var(--menta);
+  color: var(--blanco);
   padding: 50px 20px;
   text-align: center;
 }
@@ -153,13 +164,13 @@ form button {
   background-color: var(--menta);
   border: none;
   padding: 10px;
-  color: var(--gris-oscuro);
+  color: var(--blanco);
   font-weight: bold;
   cursor: pointer;
 }
 
 form button:hover {
-  background-color: var(--blanco);
+  background-color: var(--marron);
   color: var(--menta);
 }
 
