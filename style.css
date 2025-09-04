@@ -441,6 +441,10 @@ form textarea:focus {
 }
 /* BOTÓN HAMBURGUESA */
 .hamburguesa {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent; /* fuerza fondo transparente */
+  position: relative; /* asegura que z-index funcione ---*/
   display: none; /* oculto en escritorio */
   flex-direction: column;
   justify-content: space-between;
@@ -455,7 +459,7 @@ form textarea:focus {
 .hamburguesa span {
   display: block;
   height: 4px;
-  background: var(--gris-oscuro);
+  background-color: #000 !important; /* fuerza visible en Safari */
   border-radius: 2px;
   transition: 0.3s;
 }
