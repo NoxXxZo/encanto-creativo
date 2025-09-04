@@ -131,20 +131,37 @@ header nav a:hover {
   background-color: var(--menta);
   color: var(--blanco);
   padding: 50px 20px;
-  text-align: center;
+  text-align: center; /* ✅ centra el título */
+}
+
+.sobre-nosotros h2 {
+  margin-bottom: 30px;
+  font-size: 2.5rem;
 }
 
 .sobre-nosotros .contenido {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
   justify-content: center;
   align-items: center;
+  max-width: 1100px;
+  margin: 0 auto; /* centra el bloque en la página */
+  text-align: left; /* solo afecta al texto dentro */
+}
+
+.sobre-nosotros p {
+  flex: 1;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: justify; /* ✅ texto equilibrado, no pegado a la izquierda */
 }
 
 .sobre-nosotros img {
-  max-width: 300px;
+  flex: 1;
+  max-width: 400px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 /* CONTACTO */
@@ -482,6 +499,14 @@ nav {
 }
 
 @media (max-width: 768px) {
+  .sobre-nosotros .contenido {
+    flex-direction: column;
+    text-align: center; /* ✅ ahora el texto se centra en pantallas pequeñas */
+  }
+
+  .sobre-nosotros p {
+    text-align: center;
+  }
   .hero h1 {
     /*font-family: var(--fuente-titulo);*/
     font-family: "Segoe Script", cursive;

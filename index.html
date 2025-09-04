@@ -103,10 +103,29 @@
     <!-- CONTACTO -->
     <section id="contacto" class="contacto">
       <h2>Contáctanos</h2>
-      <form>
-        <input type="text" placeholder="Tu nombre" required />
-        <input type="email" placeholder="Tu correo electrónico" required />
-        <textarea placeholder="Tu mensaje" required></textarea>
+      <form
+        action="https://formspree.io/f/xovnpjzb"
+        method="POST"
+        id="form-contacto"
+      >
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Tu nombre"
+          required
+          pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+          title="Solo se permiten letras"
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Tu correo electrónico"
+          required
+        />
+
+        <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
+
         <button type="submit">Enviar</button>
       </form>
     </section>
