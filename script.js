@@ -85,6 +85,11 @@ window.addEventListener("DOMContentLoaded", () => {
           currency: "CLP",
         })}</p>
         <p>${stockText}</p>
+        ${
+          p.dimensiones
+            ? `<p class="dimensiones"><strong>Dimensiones:</strong> ${p.dimensiones}</p>`
+            : ""
+        }
         <button class="btn" ${disabled} onclick="agregarAlCarrito('${
         p.nombre
       }', ${p.precio})">

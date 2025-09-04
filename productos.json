@@ -33,7 +33,8 @@
       "./imagenes//osito3.webp"
     ],
     "categoria": "amigurumis",
-    "stock": 2
+    "stock": 2,
+    "dimensiones": "20 cm alto x 10 cm ancho"
   },
   {
     "id": 4,
@@ -45,6 +46,7 @@
       "./imagenes/coneja3.webp"
     ],
     "categoria": "amigurumis",
-    "stock": 2
+    "stock": 2,
+    "dimensiones": "20 cm alto x 10 cm ancho"
   }
 ]
